@@ -1,0 +1,7 @@
+scripts:
+  node: kool exec app node
+  yarn: kool docker kooldev/node:14 yarn
+
+  setup:
+    - kool docker kooldev/node:14 yarn install
+    - kool start

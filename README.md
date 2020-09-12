@@ -66,3 +66,9 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `yarn build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+
+REFERÊNCIA: 
+https://stackoverflow.com/questions/54668979/tell-background-script-when-content-script-injected-with-react
+https://stackoverflow.com/questions/19758028/chrome-extension-get-dom-content
+https://jsmanifest.com/create-react-chrome-extension-filtering-youtube-video-results/

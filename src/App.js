@@ -1,26 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useCallback, useEffect, useState } from 'react';
+import { map } from 'lodash';
+import './assets/css/App.css';
 
-function App() {
+const App = () => {
+  const [messages, setMessages] = useState([]);
+
+  const messageListener = useCallback((action) => {
+    switch (action.type) {
+      case 'NOTIFIER': {
+        setMessages([...messages, action.data]);
+        break;
+      }
+      default:
+        break;
+    }
+  }, [messages]);
+
+  useEffect(() => {
+    if (process.env.NODE_ENV === 'production') {
+      chrome.runtime.onMessage.addListener(messageListener);
+
+      return () => chrome.runtime.onMessage.removeListener(messageListener);
+    }
+
+    return () => {
+    };
+  }, [messageListener]);
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <span>Últimos atendimentos realizados:</span>
+        {
+          map(messages, (message) => (
+            <span>{message}</span>
+          ))
+        }
       </header>
     </div>
   );
-}
+};
 
 export default App;
