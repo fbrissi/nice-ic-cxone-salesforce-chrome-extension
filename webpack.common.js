@@ -9,6 +9,7 @@ const packageJson = require('./package.json');
 module.exports = {
   entry: {
     app: path.join(__dirname, 'src', 'index.js'),
+    content: path.join(__dirname, 'src', 'content.js'),
   },
   module: {
     rules: [

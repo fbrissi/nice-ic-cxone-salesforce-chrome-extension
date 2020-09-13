@@ -1,0 +1,19 @@
+body {
+  background-color: #eff4f7;
+  margin: 0;
+  overflow-y: visible;
+  overflow-x: hidden;
+  scrollbar-base-color: #03A9F4;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #03A9F4;
+}
+
+.dark {
+  background: #37474F;
+}

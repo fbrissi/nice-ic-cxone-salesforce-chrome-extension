@@ -1,0 +1,11 @@
+.header-sync {
+  width: 20px;
+  height: 18px;
+  cursor: pointer;
+  margin-right: 15px;
+  background-image: url("../../assets/images/sync.png");
+}
+
+.header-sync:hover {
+  background-image: url("../../assets/images/sync-hover.png");
+}

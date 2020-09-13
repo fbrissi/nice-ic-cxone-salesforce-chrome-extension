@@ -7,7 +7,7 @@ const common = require('./webpack.common.js');
 module.exports = merge(common, {
   mode: 'production',
   output: {
-    filename: '[name].bundle.js',
+    filename: '[name].js',
     path: path.join(__dirname, 'build'),
   },
   plugins: [
