@@ -18,6 +18,11 @@
     "react",
     "jest"
   ],
+  "settings": {
+    "jest": {
+      "version": 26
+    }
+  },
   "globals": {
     "chrome": true
   },

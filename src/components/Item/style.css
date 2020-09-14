@@ -1,0 +1,11 @@
+.header-item {
+  width: 20px;
+  height: 18px;
+  cursor: pointer;
+  margin-right: 15px;
+  background-image: url("../../assets/images/add.png");
+}
+
+.header-item:hover {
+  background-image: url("../../assets/images/add-hover.png");
+}

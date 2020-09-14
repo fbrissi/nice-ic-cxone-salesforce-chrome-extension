@@ -7,7 +7,7 @@ const Settings = () => {
   const [active, setActive] = useState(false);
 
   const openLink = (link) => {
-    if (process.env.NODE_ENV === 'production') {
+    if (process.env.NODE_ENV === 'production' && chrome.tabs) {
       chrome.tabs.create({ url: link });
     }
   };
@@ -29,6 +29,7 @@ const Settings = () => {
               {
                 map(links, (value, key) => (
                   <button
+                    key={key}
                     type="button"
                     className="dropdown-item active"
                     onClick={() => openLink(value)}

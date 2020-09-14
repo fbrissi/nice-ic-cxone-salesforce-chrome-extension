@@ -1,26 +1,33 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import moment from 'moment';
 import {
-  map, get, filter, size,
+  map, get, filter, find, size,
 } from 'lodash';
 import './style.css';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
+import { Creators as messagesActions } from '../../store/ducks/messages';
+import LocalPropTypes from '../prop-types/LocalPropTypes';
 
-const Messages = () => {
-  const storageKey = 'salesforce_plugin_to_familysearch';
-  const [messages, setMessages] = useState(JSON.parse(localStorage.getItem(storageKey) || '[]'));
+const Messages = (props) => {
+  const {
+    messages,
+    setMessages,
+  } = props;
 
   const messageListener = useCallback((action) => {
     switch (action.type) {
       case 'NOTIFIER': {
         const now = moment().format('DD/MM/YYYY');
-        const itens = [action.data, ...get(messages, now, [])];
+        const message = find(messages, ({ date }) => date === now);
+        const itens = [action.data, ...get(message, 'itens', [])];
         const $messages = [{
           date: now,
           itens,
         }, ...filter(messages, ({ date }) => date !== now)];
+        console.log($messages);
         setMessages($messages);
-
-        localStorage.setItem(storageKey, JSON.stringify($messages));
         break;
       }
       default:
@@ -38,7 +45,7 @@ const Messages = () => {
   };
 
   useEffect(() => {
-    if (process.env.NODE_ENV === 'production') {
+    if (process.env.NODE_ENV === 'production' && chrome.runtime) {
       chrome.runtime.onMessage.addListener(messageListener);
 
       return () => chrome.runtime.onMessage.removeListener(messageListener);
@@ -51,8 +58,11 @@ const Messages = () => {
   return (
     <section>
       {
-        map(messages, (message) => (
-          <div className="time-entries-list">
+        map(messages, (message, keyDate) => (
+          <div
+            key={keyDate.toString()}
+            className="time-entries-list"
+          >
             <div className="time-entries-list-time">
               <span className="time-entries-list-day">
                 {get(message, 'date')}
@@ -65,8 +75,12 @@ const Messages = () => {
               </div>
             </div>
             {
-              map(get(message, 'itens'), (item) => (
-                <div className="time-entry" title={get(item, 'description')}>
+              map(get(message, 'itens'), (item, keyItens) => (
+                <div
+                  key={`${keyDate}-${keyItens}`}
+                  className="time-entry"
+                  title={get(item, 'description')}
+                >
                   <div className="time-entry-description">
                     <div className="time-entry__right-side">
                       <div className="description">
@@ -120,4 +134,20 @@ const Messages = () => {
   );
 };
 
-export default Messages;
+Messages.propTypes = {
+  messages: LocalPropTypes.messages.isRequired,
+  setMessages: PropTypes.func,
+};
+
+Messages.defaultProps = {
+  setMessages: () => {
+  },
+};
+
+const mapDispatchToProps = (dispatch) => bindActionCreators(messagesActions, dispatch);
+
+const mapStateToProps = (state) => ({
+  messages: state.messages,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Messages);
