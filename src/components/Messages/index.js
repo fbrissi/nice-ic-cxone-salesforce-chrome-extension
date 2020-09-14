@@ -17,7 +17,7 @@ const Messages = () => {
       phone: '0115514991434121',
       number: '019748',
     }],
-  },{
+  }, {
     date: moment().format('DD/MM/YYYY'),
     itens: [{
       description: 'Hora: 00:00, Nome: teste, Caso: 9878987, Telefone: 23784924',

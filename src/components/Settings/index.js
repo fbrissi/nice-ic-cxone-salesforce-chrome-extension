@@ -6,13 +6,19 @@ import './style.css';
 const Settings = () => {
   const [active, setActive] = useState(false);
 
+  const openLink = (link) => {
+    if (process.env.NODE_ENV === 'production') {
+      chrome.tabs.create({ url: link });
+    }
+  };
+
   return (
     <div>
-      <div
+      <button
+        type="button"
         className="actions"
-        title="Settings"
+        aria-label="Settings"
         onClick={() => setActive(!active)}
-        aria-hidden="true"
       />
       {
         active ? (
@@ -22,12 +28,13 @@ const Settings = () => {
               <div className="dropdown-header">LINKS ÚTEIS:</div>
               {
                 map(links, (value, key) => (
-                  <a
+                  <button
+                    type="button"
                     className="dropdown-item active"
-                    href={value}
+                    onClick={() => openLink(value)}
                   >
                     <span>{key}</span>
-                  </a>
+                  </button>
                 ))
               }
             </div>

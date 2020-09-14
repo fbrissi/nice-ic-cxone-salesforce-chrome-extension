@@ -17,3 +17,16 @@ body {
 .dark {
   background: #37474F;
 }
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  overflow: visible;
+  text-align: left;
+}
+
+button:focus {
+  outline: none;
+}
