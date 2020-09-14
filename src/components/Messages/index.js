@@ -1,41 +1,26 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import moment from 'moment';
-import { map, get, size } from 'lodash';
+import {
+  map, get, filter, size,
+} from 'lodash';
 import './style.css';
 
 const Messages = () => {
-  const [messages, setMessages] = useState([{
-    date: moment().format('DD/MM/YYYY'),
-    itens: [{
-      description: 'Hora: 00:00, Nome: teste, Caso: 9878987, Telefone: 23784924',
-      name: 'Filipe Bojikian Rissi',
-      phone: '0115514991434121',
-      number: '019748',
-    }, {
-      description: 'Hora: 00:00, Nome: teste, Caso: 9878987, Telefone: 23784924',
-      name: 'Filipe Bojikian Rissi',
-      phone: '0115514991434121',
-      number: '019748',
-    }],
-  }, {
-    date: moment().format('DD/MM/YYYY'),
-    itens: [{
-      description: 'Hora: 00:00, Nome: teste, Caso: 9878987, Telefone: 23784924',
-      name: 'Filipe Bojikian Rissi',
-      phone: '0115514991434121',
-      number: '019748',
-    }, {
-      description: 'Hora: 00:00, Nome: teste, Caso: 9878987, Telefone: 23784924',
-      name: 'Filipe Bojikian Rissi',
-      phone: '0115514991434121',
-      number: '019748',
-    }],
-  }]);
+  const storageKey = 'salesforce_plugin_to_familysearch';
+  const [messages, setMessages] = useState(JSON.parse(localStorage.getItem(storageKey) || '[]'));
 
   const messageListener = useCallback((action) => {
     switch (action.type) {
       case 'NOTIFIER': {
-        setMessages([...messages, action.data]);
+        const now = moment().format('DD/MM/YYYY');
+        const itens = [action.data, ...get(messages, now, [])];
+        const $messages = [{
+          date: now,
+          itens,
+        }, ...filter(messages, ({ date }) => date !== now)];
+        setMessages($messages);
+
+        localStorage.setItem(storageKey, JSON.stringify($messages));
         break;
       }
       default:
@@ -83,6 +68,11 @@ const Messages = () => {
               map(get(message, 'itens'), (item) => (
                 <div className="time-entry" title={get(item, 'description')}>
                   <div className="time-entry-description">
+                    <div className="time-entry__right-side">
+                      <div className="description">
+                        {get(item, 'time')}
+                      </div>
+                    </div>
                     <div className="time-entry__right-side">
                       <span
                         className="time-entry-arrow"

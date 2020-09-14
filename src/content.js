@@ -9,11 +9,15 @@
           chrome.runtime.sendMessage(chrome.runtime.id, {
             target: 'background',
             type: 'NOTIFIER',
-            data: message,
+            data: {
+              time: '00:00:00',
+              description: 'Hora: 00:00, Nome: teste, Caso: 9878987, Telefone: 23784924',
+              name: 'Filipe Bojikian Rissi',
+              phone: '0115514991434121',
+              number: '019748',
+            },
           });
         }
-
-        console.log(element);
       }
     });
   };

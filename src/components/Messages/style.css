@@ -58,7 +58,7 @@ body.dark .time-entries-list-total-time {
 }
 
 .time-entry {
-  height: 80px;
+  height: 100px;
   background: white;
   border-bottom: 1px solid #C6D2D9;
   font-size: 14px;

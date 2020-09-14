@@ -3,6 +3,7 @@ import './style.css';
 import logo from '../../assets/images/logo.png';
 import Settings from '../Settings';
 import Messages from '../Messages';
+import Trash from '../Trash';
 
 const App = () => {
   const openLink = (link) => {
@@ -29,6 +30,7 @@ const App = () => {
           </div>
           <div className="colum-2">
             <Settings />
+            <Trash />
           </div>
         </div>
       </header>

@@ -2,10 +2,13 @@ import React from 'react';
 import './style.css';
 
 const Sync = () => (
-  <div
-    title="Refresh"
-    className="header-sync"
-  />
+  <div>
+    <button
+      type="button"
+      className="header-sync"
+      aria-label="Refresh"
+    />
+  </div>
 );
 
 export default Sync;

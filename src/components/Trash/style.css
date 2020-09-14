@@ -1,0 +1,11 @@
+.header-trash {
+  width: 20px;
+  height: 18px;
+  cursor: pointer;
+  margin-right: 15px;
+  background-image: url("../../assets/images/trash.png");
+}
+
+.header-trash:hover {
+  background-image: url("../../assets/images/trash-hover.png");
+}
