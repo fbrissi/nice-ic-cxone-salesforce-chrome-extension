@@ -1,14 +1,12 @@
 import React, { useCallback, useEffect } from 'react';
-import moment from 'moment';
-import {
-  map, get, filter, find, size,
-} from 'lodash';
+import { get, map, size } from 'lodash';
 import './style.css';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import { Creators as messagesActions } from '../../store/ducks/messages';
 import LocalPropTypes from '../prop-types/LocalPropTypes';
+import parseMessage from '../../services/message';
 
 const Messages = (props) => {
   const {
@@ -16,23 +14,17 @@ const Messages = (props) => {
     setMessages,
   } = props;
 
-  const messageListener = useCallback((action) => {
-    switch (action.type) {
-      case 'NOTIFIER': {
-        const now = moment().format('DD/MM/YYYY');
-        const message = find(messages, ({ date }) => date === now);
-        const itens = [action.data, ...get(message, 'itens', [])];
-        const $messages = [{
-          date: now,
-          itens,
-        }, ...filter(messages, ({ date }) => date !== now)];
-        console.log($messages);
-        setMessages($messages);
-        break;
-      }
-      default:
-        break;
+  const messageListener = useCallback((request, sender, sendResponse) => {
+    if (request.target === 'contet' && request.type === 'NOTIFIER') {
+      console.log(request.data);
+      setMessages(parseMessage(messages, request.data));
+
+      sendResponse({
+        status: true,
+      });
     }
+
+    return true;
   }, [messages]);
 
   const copyToClipboard = (text) => {
@@ -45,10 +37,10 @@ const Messages = (props) => {
   };
 
   useEffect(() => {
-    if (process.env.NODE_ENV === 'production' && chrome.runtime) {
-      chrome.runtime.onMessage.addListener(messageListener);
+    if (process.env.NODE_ENV === 'production' && browser.runtime) {
+      browser.runtime.onMessage.addListener(messageListener);
 
-      return () => chrome.runtime.onMessage.removeListener(messageListener);
+      return () => browser.runtime.onMessage.removeListener(messageListener);
     }
 
     return () => {

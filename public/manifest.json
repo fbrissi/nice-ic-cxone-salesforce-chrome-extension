@@ -1,16 +1,14 @@
 {
   "manifest_version": 2,
-
   "name": "SalesForce - FamilySearch - BR",
   "description": "Padronizações e ajustes no SalesForce para missionários de suporte do FamilySearch",
   "version": "0.1.0",
-
   "author": "Filipe Bojikian Rissi",
-
   "permissions": [
-    "storage"
+    "tabs",
+    "storage",
+    "activeTab"
   ],
-
   "browser_action": {
     "default_popup": "index.html",
     "default_title": "SalesForce - FamilySearch - BR",
@@ -22,7 +20,6 @@
       "128": "icon.png"
     }
   },
-
   "icons": {
     "16": "icon.png",
     "24": "icon.png",
@@ -30,7 +27,12 @@
     "48": "icon.png",
     "128": "icon.png"
   },
-
+  "background": {
+    "scripts": [
+      "background.js"
+    ],
+    "persistent": false
+  },
   "content_scripts": [
     {
       "all_frames": true,

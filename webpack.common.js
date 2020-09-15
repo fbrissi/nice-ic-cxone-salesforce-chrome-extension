@@ -10,6 +10,7 @@ module.exports = {
   entry: {
     app: path.join(__dirname, 'src', 'index.js'),
     content: path.join(__dirname, 'src', 'content.js'),
+    background: path.join(__dirname, 'src', 'background.js'),
   },
   module: {
     rules: [

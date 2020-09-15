@@ -6,6 +6,8 @@ import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 import store from './store';
 
+window.browser = chrome;
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>

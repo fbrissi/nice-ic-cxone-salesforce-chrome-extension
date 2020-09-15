@@ -7,8 +7,8 @@ const Settings = () => {
   const [active, setActive] = useState(false);
 
   const openLink = (link) => {
-    if (process.env.NODE_ENV === 'production' && chrome.tabs) {
-      chrome.tabs.create({ url: link });
+    if (process.env.NODE_ENV === 'production' && browser.tabs) {
+      browser.tabs.create({ url: link });
     }
   };
 

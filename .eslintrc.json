@@ -24,6 +24,7 @@
     }
   },
   "globals": {
+    "browser": true,
     "chrome": true
   },
   "env": {

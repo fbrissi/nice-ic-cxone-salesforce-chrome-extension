@@ -3,10 +3,9 @@ import './style.css';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import moment from 'moment';
-import { filter, find, get } from 'lodash';
 import { Creators as messagesActions } from '../../store/ducks/messages';
 import LocalPropTypes from '../prop-types/LocalPropTypes';
+import parseMessage from '../../services/message';
 
 const Item = (props) => {
   const {
@@ -14,18 +13,10 @@ const Item = (props) => {
     setMessages,
   } = props;
 
-  const addMessage = useCallback((action) => {
-    switch (action.type) {
+  const addMessage = useCallback((request) => {
+    switch (request.type) {
       case 'NOTIFIER': {
-        const now = moment().format('DD/MM/YYYY');
-        const message = find(messages, ({ date }) => date === now);
-        const itens = [action.data, ...get(message, 'itens', [])];
-        const $messages = [{
-          date: now,
-          itens,
-        }, ...filter(messages, ({ date }) => date !== now)];
-        console.log($messages);
-        setMessages($messages);
+        setMessages(parseMessage(messages, request.data));
         break;
       }
       default:
@@ -40,7 +31,7 @@ const Item = (props) => {
         className="header-item"
         aria-label="Clean"
         onClick={() => addMessage({
-          target: 'background',
+          target: 'contet',
           type: 'NOTIFIER',
           data: {
             time: '00:00:00',
