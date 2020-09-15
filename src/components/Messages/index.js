@@ -14,14 +14,9 @@ const Messages = (props) => {
     setMessages,
   } = props;
 
-  const messageListener = useCallback((request, sender, sendResponse) => {
+  const messageListener = useCallback((request) => {
     if (request.target === 'contet' && request.type === 'NOTIFIER') {
-      console.log(request.data);
       setMessages(parseMessage(messages, request.data));
-
-      sendResponse({
-        status: true,
-      });
     }
 
     return true;
@@ -39,12 +34,7 @@ const Messages = (props) => {
   useEffect(() => {
     if (process.env.NODE_ENV === 'production' && browser.runtime) {
       browser.runtime.onMessage.addListener(messageListener);
-
-      return () => browser.runtime.onMessage.removeListener(messageListener);
     }
-
-    return () => {
-    };
   }, [messageListener]);
 
   return (

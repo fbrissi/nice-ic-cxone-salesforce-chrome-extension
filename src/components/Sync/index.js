@@ -1,7 +1,9 @@
 import React from 'react';
 import './style.css';
 import PropTypes from 'prop-types';
-import { KEY } from '../../store/ducks/messages';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { Creators as messagesActions, KEY } from '../../store/ducks/messages';
 
 const Sync = (props) => {
   const {
@@ -29,4 +31,6 @@ Sync.defaultProps = {
   },
 };
 
-export default Sync;
+const mapDispatchToProps = (dispatch) => bindActionCreators(messagesActions, dispatch);
+
+export default connect(null, mapDispatchToProps)(Sync);

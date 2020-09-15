@@ -1,15 +1,16 @@
-import moment from 'moment';
-import { filter, find, get } from 'lodash';
-
-const parseMessage = (messages, data) => {
-  const now = moment().format('DD/MM/YYYY');
-  const message = find(messages, ({ date }) => date === now);
-  const itens = [data, ...get(message, 'itens', [])];
+const parseMessage = (messages = [], data = {}) => {
+  const now = new Date().toISOString()
+    .substr(0, 10)
+    .split('-')
+    .reverse()
+    .join('/');
+  const message = messages.find(({ date }) => date === now) || { itens: [] };
+  const itens = [data, ...message.itens];
 
   return [{
     date: now,
     itens,
-  }, ...filter(messages, ({ date }) => date !== now)];
+  }, ...messages.filter(({ date }) => date !== now)];
 };
 
 export default parseMessage;

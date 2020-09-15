@@ -1,37 +1,35 @@
-import { each, get } from 'lodash';
-
 (() => {
   window.browser = chrome;
 
   const handleMutationObserver = (mutations) => {
-    each(mutations, (mutation) => {
+    let id;
+    mutations.forEach((mutation) => {
       if (mutation.type === 'childList') {
         const element = mutation.target;
         const description = element.textContent || element.innerText || '';
 
-        if (description) {
-          const message = {
-            type: 'NOTIFIER',
-            data: {
-              time: '00:00:00',
-              description,
-              name: 'Filipe Bojikian Rissi',
-              phone: '0115514991434121',
-              number: '019748',
-            },
-          };
+        if (id !== element.id) {
+          id = element.id;
 
-          browser.runtime.sendMessage(browser.runtime.id, {
-            target: 'contet',
-            ...message,
-          }, (response) => {
-            if (!get(response, 'status', false)) {
-              browser.runtime.sendMessage(browser.runtime.id, {
-                target: 'background',
-                ...message,
-              });
-            }
-          });
+          console.log(element);
+
+          if (description) {
+            const message = {
+              type: 'NOTIFIER',
+              data: {
+                time: '00:00:00',
+                description,
+                name: 'Filipe Bojikian Rissi',
+                phone: '0115514991434121',
+                number: '019748',
+              },
+            };
+
+            browser.runtime.sendMessage(browser.runtime.id, {
+              target: 'background',
+              ...message,
+            });
+          }
         }
       }
     });
