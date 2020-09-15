@@ -5,9 +5,9 @@
   "version": "0.1.0",
   "author": "Filipe Bojikian Rissi",
   "permissions": [
-    "tabs",
     "storage",
-    "activeTab"
+    "background",
+    "notifications"
   ],
   "browser_action": {
     "default_popup": "index.html",

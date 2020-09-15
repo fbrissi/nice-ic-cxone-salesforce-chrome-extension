@@ -1,6 +1,6 @@
 import { createActions, createReducer } from 'reduxsauce';
 
-export const KEY = '@salesforce@plugin@to@familysearch';
+export const KEY = 'familysearch_salesforce_plugin';
 
 export const { Types, Creators } = createActions({
   setMessages: ['messages'],
