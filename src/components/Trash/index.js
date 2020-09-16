@@ -11,14 +11,12 @@ const Trash = (props) => {
   } = props;
 
   return (
-    <div>
-      <button
-        type="button"
-        className="header-trash"
-        aria-label="Clean"
-        onClick={() => setMessages([])}
-      />
-    </div>
+    <button
+      type="button"
+      className="header-trash"
+      aria-label="Clean"
+      onClick={() => setMessages([])}
+    />
   );
 };
 

@@ -11,14 +11,12 @@ const Sync = (props) => {
   } = props;
 
   return (
-    <div>
-      <button
-        type="button"
-        className="header-sync"
-        aria-label="Refresh"
-        onClick={() => setMessages(JSON.parse(localStorage.getItem(KEY) || '[]'))}
-      />
-    </div>
+    <button
+      type="button"
+      className="header-sync"
+      aria-label="Refresh"
+      onClick={() => setMessages(JSON.parse(localStorage.getItem(KEY) || '[]'))}
+    />
   );
 };
 

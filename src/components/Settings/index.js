@@ -23,6 +23,11 @@ const Settings = () => {
       {
         active ? (
           <div className="modal">
+            <div
+              className="invisible-menu"
+              onClick={() => setActive(!active)}
+              aria-hidden="true"
+            />
             <div className="rectangle" />
             <div className="dropdown-menu">
               <div className="dropdown-header">LINKS ÚTEIS:</div>

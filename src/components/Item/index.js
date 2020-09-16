@@ -25,24 +25,22 @@ const Item = (props) => {
   }, [messages]);
 
   return (
-    <div>
-      <button
-        type="button"
-        className="header-item"
-        aria-label="Clean"
-        onClick={() => addMessage({
-          target: 'contet',
-          type: 'NOTIFIER',
-          data: {
-            time: '00:00:00',
-            description: 'TESTE',
-            name: 'Filipe Bojikian Rissi',
-            phone: '0115514991434121',
-            number: '019748',
-          },
-        })}
-      />
-    </div>
+    <button
+      type="button"
+      className="header-item"
+      aria-label="Clean"
+      onClick={() => addMessage({
+        target: 'contet',
+        type: 'NOTIFIER',
+        data: {
+          time: '00:00:00',
+          description: 'TESTE',
+          name: 'Filipe Bojikian Rissi',
+          phone: '0115514991434121',
+          number: '019748',
+        },
+      })}
+    />
   );
 };
 

@@ -5,7 +5,6 @@ import Settings from '../Settings';
 import Messages from '../Messages';
 import Trash from '../Trash';
 import Sync from '../Sync';
-import Item from '../Item';
 
 const App = () => {
   const openLink = (link) => {
@@ -34,11 +33,6 @@ const App = () => {
             <Settings />
             <Trash />
             <Sync />
-            {
-              process.env.NODE_ENV === 'development' ? (
-                <Item />
-              ) : null
-            }
           </div>
         </div>
       </header>

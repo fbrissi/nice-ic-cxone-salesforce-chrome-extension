@@ -1,7 +1,7 @@
 .header-sync {
   width: 20px;
   height: 18px;
-  cursor: pointer;
+  z-index: 1051;
   margin-right: 15px;
   background-image: url("../../assets/images/sync.png");
 }
