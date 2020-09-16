@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
   "name": "SalesForce - FamilySearch - BR",
-  "description": "Padronizações e ajustes no SalesForce para missionários de suporte do FamilySearch",
-  "version": "0.1.0",
+  "description": "Ferramenta auxiliar para Salesforce no suporte do FamilySearch",
+  "version": "0.0.0.1",
   "author": "Filipe Bojikian Rissi",
   "permissions": [
     "storage",
@@ -37,7 +37,7 @@
     {
       "all_frames": true,
       "matches": [
-        "<all_urls>"
+        "https://familysearch--icagentconsole.na138.visual.force.com/*"
       ],
       "js": [
         "content.js"
