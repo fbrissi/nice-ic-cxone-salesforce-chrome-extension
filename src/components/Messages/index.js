@@ -61,7 +61,6 @@ const Messages = (props) => {
                 <div
                   key={`${keyDate}-${keyItens}`}
                   className="time-entry"
-                  title={get(item, 'description')}
                 >
                   <div className="time-entry-description">
                     <div className="time-entry__right-side">

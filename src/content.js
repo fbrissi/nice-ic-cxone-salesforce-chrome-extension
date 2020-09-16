@@ -4,23 +4,38 @@ const handleMutationObserver = (mutations) => {
   let id;
   mutations.forEach((mutation) => {
     if (mutation.type === 'childList') {
-      const element = mutation.target;
+      const element = mutation.target.querySelector('.agentMsgPnl .agentMsgSub');
       const description = element.textContent || element.innerText || '';
 
       if (id !== element.id) {
         id = element.id;
+        const timeElement = element.querySelector('.agentMsgDate');
+        const otherInfoElement = element.querySelector('.agentMsgCon');
+        const phoneElement = document.getElementById('contactIDorNumberPnlId');
 
-        console.log(element);
+        const timeText = timeElement.textContent || timeElement.innerText;
+        const phoneText = phoneElement ? phoneElement.textContent || phoneElement.innerText : 'Sem telefone';
+        const otherInfo = otherInfoElement.textContent || otherInfoElement.innerText;
+
+        const time = timeText
+          .replace(/\d{2}\/\d{2}\/\d{4}/g, '').trim();
+        const name = otherInfo.substr(0, otherInfo.indexOf('case#')).trim();
+        const phone = phoneText;
+        const number = otherInfo
+          .substr(otherInfo.indexOf('case#'), otherInfo.indexOf('**System'))
+          .replaceAll(/\D/g, '');
+        const idSf = otherInfo.substr(otherInfo.indexOf('only**') + 6).trim();
 
         if (description) {
           const message = {
             type: 'NOTIFIER',
             data: {
-              time: '00:00:00',
+              id: idSf,
+              time,
               description,
-              name: 'Filipe Bojikian Rissi',
-              phone: '0115514991434121',
-              number: '019748',
+              name,
+              phone,
+              number,
             },
           };
 
