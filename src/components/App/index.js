@@ -30,9 +30,9 @@ const App = () => {
             </button>
           </div>
           <div className="colum-2">
-            <Settings />
-            <Trash />
             <Sync />
+            <Trash />
+            <Settings />
           </div>
         </div>
       </header>
