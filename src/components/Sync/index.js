@@ -3,19 +3,24 @@ import './style.css';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Creators as messagesActions, KEY } from '../../store/ducks/messages';
+import { Creators as messagesActions } from '../../store/ducks/messages';
+import { getStorage } from '../../services/message';
 
 const Sync = (props) => {
   const {
     setMessages,
   } = props;
 
+  const syncMessages = async () => {
+    setMessages(await getStorage());
+  };
+
   return (
     <button
       type="button"
       className="header-sync"
       aria-label="Refresh"
-      onClick={() => setMessages(JSON.parse(localStorage.getItem(KEY) || '[]'))}
+      onClick={() => syncMessages()}
     />
   );
 };

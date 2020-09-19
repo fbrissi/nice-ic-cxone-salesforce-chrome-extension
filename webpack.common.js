@@ -4,6 +4,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const FixStyleOnlyEntriesPlugin = require('webpack-fix-style-only-entries');
+const { HtmlWebpackSkipAssetsPlugin } = require('html-webpack-skip-assets-plugin');
 const packageJson = require('./package.json');
 
 module.exports = {
@@ -47,6 +48,12 @@ module.exports = {
       version: `${packageJson.version}`,
     }),
     new FixStyleOnlyEntriesPlugin(),
+    new HtmlWebpackSkipAssetsPlugin({
+      excludeAssets: [
+        'content.js',
+        'background.js',
+      ],
+    }),
     new CopyPlugin({
       patterns: [
         {

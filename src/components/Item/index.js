@@ -1,28 +1,13 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import './style.css';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { Creators as messagesActions } from '../../store/ducks/messages';
-import LocalPropTypes from '../prop-types/LocalPropTypes';
-import parseMessage from '../../services/message';
+import { getStorage, KEY, parseMessage } from '../../services/message';
 
-const Item = (props) => {
-  const {
-    messages,
-    setMessages,
-  } = props;
-
-  const addMessage = useCallback((request) => {
-    switch (request.type) {
-      case 'NOTIFIER': {
-        setMessages(parseMessage(messages, request.data));
-        break;
-      }
-      default:
-        break;
-    }
-  }, [messages]);
+const Item = () => {
+  const addMessage = async (request) => {
+    const oldMessages = await getStorage();
+    const messages = parseMessage(oldMessages, request.data);
+    localStorage.setItem(KEY, JSON.stringify(messages));
+  };
 
   return (
     <button
@@ -33,6 +18,7 @@ const Item = (props) => {
         target: 'contet',
         type: 'NOTIFIER',
         data: {
+          id: '123456',
           time: '00:00:00',
           description: 'TESTE',
           name: 'Filipe Bojikian Rissi',
@@ -44,20 +30,4 @@ const Item = (props) => {
   );
 };
 
-Item.propTypes = {
-  messages: LocalPropTypes.messages.isRequired,
-  setMessages: PropTypes.func,
-};
-
-Item.defaultProps = {
-  setMessages: () => {
-  },
-};
-
-const mapDispatchToProps = (dispatch) => bindActionCreators(messagesActions, dispatch);
-
-const mapStateToProps = (state) => ({
-  messages: state.messages,
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Item);
+export default Item;

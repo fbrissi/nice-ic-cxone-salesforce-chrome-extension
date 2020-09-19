@@ -29,6 +29,7 @@
   },
   "background": {
     "scripts": [
+      "browser-polyfill.js",
       "background.js"
     ],
     "persistent": false
@@ -40,6 +41,7 @@
         "https://familysearch--icagentconsole.na138.visual.force.com/*"
       ],
       "js": [
+        "browser-polyfill.js",
         "content.js"
       ]
     }

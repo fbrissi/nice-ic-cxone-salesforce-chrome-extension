@@ -1,5 +1,3 @@
-window.browser = chrome;
-
 const handleMutationObserver = (mutations) => {
   let id;
   mutations.forEach((mutation) => {
@@ -24,13 +22,13 @@ const handleMutationObserver = (mutations) => {
         const number = otherInfo
           .substr(otherInfo.indexOf('case#'), otherInfo.indexOf('**System'))
           .replaceAll(/\D/g, '');
-        const idSf = otherInfo.substr(otherInfo.indexOf('only**') + 6).trim();
+        const sfId = otherInfo.substr(otherInfo.indexOf('only**') + 6).trim();
 
         if (description) {
           const message = {
             type: 'NOTIFIER',
             data: {
-              id: idSf,
+              id: sfId,
               time,
               description,
               name,

@@ -4,18 +4,24 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Creators as messagesActions } from '../../store/ducks/messages';
+import { cleanStorage } from '../../services/message';
 
 const Trash = (props) => {
   const {
     setMessages,
   } = props;
 
+  const clean = () => {
+    setMessages([]);
+    cleanStorage();
+  };
+
   return (
     <button
       type="button"
       className="header-trash"
       aria-label="Clean"
-      onClick={() => setMessages([])}
+      onClick={() => clean()}
     />
   );
 };

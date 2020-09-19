@@ -5,10 +5,11 @@ import Settings from '../Settings';
 import Messages from '../Messages';
 import Trash from '../Trash';
 import Sync from '../Sync';
+import Item from '../Item';
 
 const App = () => {
   const openLink = (link) => {
-    if (process.env.NODE_ENV === 'production' && browser.tabs) {
+    if (process.env.NODE_ENV === 'production') {
       browser.tabs.create({ url: link });
     }
   };
@@ -30,6 +31,11 @@ const App = () => {
             </button>
           </div>
           <div className="colum-2">
+            {
+              process.env.NODE_ENV === 'development' ? (
+                <Item />
+              ) : null
+            }
             <Sync />
             <Trash />
             <Settings />

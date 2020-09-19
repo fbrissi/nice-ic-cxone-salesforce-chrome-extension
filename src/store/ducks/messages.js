@@ -1,12 +1,10 @@
 import { createActions, createReducer } from 'reduxsauce';
 
-export const KEY = 'familysearch_salesforce_plugin';
-
 export const { Types, Creators } = createActions({
   setMessages: ['messages'],
 });
 
-const INITIAL_STATE = JSON.parse(localStorage.getItem(KEY) || '[]');
+const INITIAL_STATE = [];
 
 export const set = (state = INITIAL_STATE, action) => action.messages || state;
 

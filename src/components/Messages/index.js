@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { get, map, size } from 'lodash';
 import './style.css';
 import { connect } from 'react-redux';
@@ -6,21 +6,13 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import { Creators as messagesActions } from '../../store/ducks/messages';
 import LocalPropTypes from '../prop-types/LocalPropTypes';
-import parseMessage from '../../services/message';
+import { getStorage } from '../../services/message';
 
 const Messages = (props) => {
   const {
     messages,
     setMessages,
   } = props;
-
-  const messageListener = useCallback((request) => {
-    if (request.target === 'contet' && request.type === 'NOTIFIER') {
-      setMessages(parseMessage(messages, request.data));
-    }
-
-    return true;
-  }, [messages]);
 
   const copyToClipboard = (text) => {
     const tempInput = document.createElement('input');
@@ -32,10 +24,12 @@ const Messages = (props) => {
   };
 
   useEffect(() => {
-    if (process.env.NODE_ENV === 'production' && browser.runtime) {
-      browser.runtime.onMessage.addListener(messageListener);
-    }
-  }, [messageListener]);
+    const fetchData = async () => {
+      setMessages(await getStorage());
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <section>
