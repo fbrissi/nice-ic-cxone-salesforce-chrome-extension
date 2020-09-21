@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { map } from 'lodash';
+import { RiListSettingsFill } from 'react-icons/ri';
 import links from './links.json';
 import './style.css';
 
@@ -14,9 +15,9 @@ const Settings = () => {
 
   return (
     <div>
-      <button
-        type="button"
-        className="actions"
+      <RiListSettingsFill
+        size={22}
+        className="icon-button margin-button"
         aria-label="Settings"
         onClick={() => setActive(!active)}
       />

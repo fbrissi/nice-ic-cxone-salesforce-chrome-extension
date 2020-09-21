@@ -1,5 +1,5 @@
 import React from 'react';
-import './style.css';
+import { AiOutlinePlusCircle } from 'react-icons/ai';
 import { getStorage, KEY, parseMessage } from '../../services/message';
 
 const Item = () => {
@@ -10,20 +10,19 @@ const Item = () => {
   };
 
   return (
-    <button
-      type="button"
-      className="header-item"
+    <AiOutlinePlusCircle
+      size={20}
+      className="icon-button margin-button"
       aria-label="Clean"
       onClick={() => addMessage({
         target: 'contet',
         type: 'NOTIFIER',
         data: {
-          id: '123456',
-          time: '00:00:00',
-          description: 'TESTE',
-          name: 'Filipe Bojikian Rissi',
+          id: '5004V00000aefcDQAQ',
+          time: '08:08',
+          description: 'New Salesforce case# 07752618 **System information only** 5004V00000aefcDQAQ',
           phone: '0115514991434121',
-          number: '019748',
+          number: '07752618',
         },
       })}
     />

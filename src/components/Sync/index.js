@@ -1,8 +1,8 @@
 import React from 'react';
-import './style.css';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { AiOutlineReload } from 'react-icons/ai';
 import { Creators as messagesActions } from '../../store/ducks/messages';
 import { getStorage } from '../../services/message';
 
@@ -16,9 +16,9 @@ const Sync = (props) => {
   };
 
   return (
-    <button
-      type="button"
-      className="header-sync"
+    <AiOutlineReload
+      size={20}
+      className="icon-button margin-button"
       aria-label="Refresh"
       onClick={() => syncMessages()}
     />

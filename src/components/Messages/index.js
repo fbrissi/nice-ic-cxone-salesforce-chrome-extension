@@ -4,6 +4,11 @@ import './style.css';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
+import { MdOpenInNew } from 'react-icons/md';
+import { FaCopy } from 'react-icons/fa';
+import { BiTime } from 'react-icons/bi';
+import { HiMail } from 'react-icons/hi';
+import { AiOutlineNumber, AiFillPhone } from 'react-icons/ai';
 import { Creators as messagesActions } from '../../store/ducks/messages';
 import LocalPropTypes from '../prop-types/LocalPropTypes';
 import { getStorage } from '../../services/message';
@@ -58,45 +63,52 @@ const Messages = (props) => {
                 >
                   <div className="time-entry-description">
                     <div className="time-entry__right-side">
+                      <BiTime />
                       <div className="description">
                         {get(item, 'time')}
                       </div>
                     </div>
+
                     <div className="time-entry__right-side">
-                      <span
-                        className="time-entry-arrow"
-                        onClick={() => copyToClipboard(get(item, 'name'))}
-                        aria-hidden="true"
-                      />
+                      <HiMail />
                       <div className="description">
-                        {get(item, 'name')}
+                        {get(item, 'email')}
                       </div>
-                    </div>
-                    <div className="time-entry__right-side">
-                      <span
-                        className="time-entry-arrow"
-                        onClick={() => copyToClipboard(get(item, 'phone'))}
+                      <FaCopy
+                        className="icon-button"
+                        onClick={() => copyToClipboard(get(item, 'email'))}
                         aria-hidden="true"
                       />
+                    </div>
+
+                    <div className="time-entry__right-side">
+                      <AiFillPhone />
                       <div className="description">
                         {get(item, 'phone')}
                       </div>
-                    </div>
-
-                    <div
-                      className="time-entry-project"
-                      style={{ color: 'rgb(255, 193, 7)' }}
-                    >
-                      <span
-                        className="time-entry-arrow"
-                        onClick={() => copyToClipboard(get(item, 'number'))}
+                      <FaCopy
+                        className="icon-button"
+                        onClick={() => copyToClipboard(get(item, 'phone'))}
                         aria-hidden="true"
                       />
+                    </div>
+
+                    <div className="time-entry__right-side">
+                      <AiOutlineNumber />
                       <div className="time-entry__project-wrapper">
                         <span className="time-entry__project-name">
                           {get(item, 'number')}
                         </span>
                       </div>
+                      <MdOpenInNew
+                        className="icon-button"
+                        aria-hidden="true"
+                      />
+                      <FaCopy
+                        className="icon-button margin-icon"
+                        onClick={() => copyToClipboard(get(item, 'number'))}
+                        aria-hidden="true"
+                      />
                     </div>
                   </div>
                 </div>

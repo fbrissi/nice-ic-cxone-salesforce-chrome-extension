@@ -1,14 +1,3 @@
-.actions {
-  width: 20px;
-  height: 18px;
-  z-index: 1051;
-  background-image: url("../../assets/images/menu.png");
-}
-
-.actions:hover {
-  background-image: url("../../assets/images/menu-hover.png");
-}
-
 .invisible-menu {
   width: 100vh;
   height: 100vh;

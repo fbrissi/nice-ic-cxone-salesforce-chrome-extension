@@ -58,9 +58,7 @@ body.dark .time-entries-list-total-time {
 }
 
 .time-entry {
-  height: 100px;
   background: white;
-  border-bottom: 1px solid #C6D2D9;
   font-size: 14px;
   color: #333333;
   position: relative;
@@ -74,23 +72,21 @@ body.dark .time-entry, body.dark .time-entry-locked {
 }
 
 .time-entry-description {
-  display: inline-block;
-  margin-bottom: 2px;
-  position: relative;
-  width: 48%;
-  top: 50%;
-  transform: translate(0, -50%);
-  float: left;
-  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
 }
 
 .description, .no-description {
+  margin-left: 5px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .description {
+  flex: 1;
+  align-content: start;
   color: #000;
 }
 
@@ -103,67 +99,30 @@ body.dark .description {
   margin-top: 2px;
   align-items: center;
   font-size: 13px;
-  width: 100%;
+  width: 100vw;
   line-height: 16px;
 }
 
 .time-entry__project-wrapper {
-  display: flex;
-  align-items: center;
-  max-width: 65%;
-}
-
-.dot {
-  padding: 2px;
-  border-radius: 50%;
-  display: inline-block;
-  width: 2px;
-  height: 2px;
+  flex: 1;
+  margin-left: 5px;
+  align-content: start;
 }
 
 .time-entry__project-name {
-  margin-left: 3px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-
-.time-entry__task-name {
-  width: 90%;
-  margin-left: 5px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  color: #999999;
 }
 
 .time-entry__right-side {
   display: flex;
-  margin-right: 10px;
-  margin-top: 5px;
-  float: left;
   align-items: center;
-  position: relative;
-  top: 50%;
-  transform: translate(0, -50%);
-}
-
-.time-entry__right-side--duration {
-  position: relative;
-  top: -1px;
-}
-
-body.dark .time-entry__task-name, body.dark .time-entry__right-side--duration {
-  color: #C6D2D9;
-}
-
-.time-entry-arrow {
-  position: relative;
   margin-right: 10px;
-  cursor: pointer;
-  content: url("../../assets/images/copy.png");
+  margin-top: 8px;
+  color: rgb(255, 193, 7);
 }
 
-.time-entry-arrow:hover {
-  content: url("../../assets/images/copy-hover.png");
+body.dark, body.dark {
+  color: #C6D2D9;
 }

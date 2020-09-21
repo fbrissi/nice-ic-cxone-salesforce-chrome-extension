@@ -1,8 +1,8 @@
 import React from 'react';
-import './style.css';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { BsTrashFill } from 'react-icons/bs';
 import { Creators as messagesActions } from '../../store/ducks/messages';
 import { cleanStorage } from '../../services/message';
 
@@ -17,9 +17,9 @@ const Trash = (props) => {
   };
 
   return (
-    <button
-      type="button"
-      className="header-trash"
+    <BsTrashFill
+      size={20}
+      className="icon-button margin-button"
       aria-label="Clean"
       onClick={() => clean()}
     />

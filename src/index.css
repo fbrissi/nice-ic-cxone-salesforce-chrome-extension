@@ -30,3 +30,17 @@ button {
 button:focus {
   outline: none;
 }
+
+
+.icon-button {
+  color: #90A4AE;
+  cursor: pointer;
+}
+
+.icon-button:hover {
+  color: #03A9F4;
+}
+
+.margin-icon {
+  margin-left: 5px;
+}

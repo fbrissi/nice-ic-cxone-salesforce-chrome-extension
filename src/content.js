@@ -9,15 +9,14 @@ const handleMutationObserver = (mutations) => {
         id = element.id;
         const timeElement = element.querySelector('.agentMsgDate');
         const otherInfoElement = element.querySelector('.agentMsgCon');
-        const phoneElement = document.getElementById('contactIDorNumberPnlId');
+        const phoneElement = document.getElementById('phoneIDorNumberPnlId');
 
         const timeText = timeElement.textContent || timeElement.innerText;
-        const phoneText = phoneElement ? phoneElement.textContent || phoneElement.innerText : 'Sem telefone';
+        const phoneText = phoneElement ? phoneElement.textContent || phoneElement.innerText : '';
         const otherInfo = otherInfoElement.textContent || otherInfoElement.innerText;
 
         const time = timeText
           .replace(/\d{2}\/\d{2}\/\d{4}/g, '').trim();
-        const name = otherInfo.substr(0, otherInfo.indexOf('case#')).trim();
         const phone = phoneText;
         const number = otherInfo
           .substr(otherInfo.indexOf('case#'), otherInfo.indexOf('**System'))
@@ -31,7 +30,6 @@ const handleMutationObserver = (mutations) => {
               id: sfId,
               time,
               description,
-              name,
               phone,
               number,
             },
