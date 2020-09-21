@@ -10,8 +10,9 @@ const packageJson = require('./package.json');
 module.exports = {
   entry: {
     app: path.join(__dirname, 'src', 'index.js'),
-    content: path.join(__dirname, 'src', 'content.js'),
     background: path.join(__dirname, 'src', 'background.js'),
+    'content-ic': path.join(__dirname, 'src', 'content-ic.js'),
+    'content-sf': path.join(__dirname, 'src', 'content-sf.js'),
   },
   module: {
     rules: [
@@ -50,7 +51,7 @@ module.exports = {
     new FixStyleOnlyEntriesPlugin(),
     new HtmlWebpackSkipAssetsPlugin({
       excludeAssets: [
-        'content.js',
+        'content-*.js',
         'background.js',
       ],
     }),

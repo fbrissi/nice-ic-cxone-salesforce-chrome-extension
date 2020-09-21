@@ -28,6 +28,25 @@ const Messages = (props) => {
     document.body.removeChild(tempInput);
   };
 
+  const openCase = async (id) => {
+    if (process.env.NODE_ENV === 'production') {
+      const tabs = await browser.tabs.query({
+        currentWindow: true,
+        active: true,
+      });
+
+      tabs.forEach((tab) => {
+        browser.tabs.sendMessage(tab.id, {
+          target: 'popup',
+          type: 'OPEN-CASE',
+          data: {
+            id,
+          },
+        });
+      });
+    }
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       setMessages(await getStorage());
@@ -102,6 +121,7 @@ const Messages = (props) => {
                       </div>
                       <MdOpenInNew
                         className="icon-button"
+                        onClick={() => openCase(get(item, 'id'))}
                         aria-hidden="true"
                       />
                       <FaCopy

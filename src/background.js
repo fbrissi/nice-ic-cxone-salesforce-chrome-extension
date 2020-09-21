@@ -1,7 +1,7 @@
 import { parseMessage, getStorage, KEY } from './services/message';
 
 browser.runtime.onMessage.addListener(async (request) => {
-  if (request.target === 'background') {
+  if (request.target === 'content' && request.type === 'NOTIFIER') {
     const oldMessages = await getStorage();
     const messages = parseMessage(oldMessages, request.data);
     browser.storage.local.set({ [KEY]: messages });

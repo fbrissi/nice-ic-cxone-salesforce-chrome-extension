@@ -41,6 +41,10 @@ button:focus {
   color: #03A9F4;
 }
 
+.margin-button {
+  margin-left: 10px;
+}
+
 .margin-icon {
   margin-left: 5px;
 }

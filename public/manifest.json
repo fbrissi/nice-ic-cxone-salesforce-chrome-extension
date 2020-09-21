@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "SalesForce - FamilySearch - BR",
   "description": "Ferramenta auxiliar para Salesforce no suporte do FamilySearch",
-  "version": "0.0.0.2",
+  "version": "0.0.0.3",
   "author": "Filipe Bojikian Rissi",
   "permissions": [
     "storage",
@@ -38,11 +38,21 @@
     {
       "all_frames": true,
       "matches": [
-        "https://familysearch--icagentconsole.na138.visual.force.com/*"
+        "https://*.visual.force.com/apex/inContactAgentConsole*"
       ],
       "js": [
         "browser-polyfill.js",
-        "content.js"
+        "content-ic.js"
+      ]
+    },
+    {
+      "all_frames": true,
+      "matches": [
+        "https://*.my.salesforce.com/500*"
+      ],
+      "js": [
+        "browser-polyfill.js",
+        "content-sf.js"
       ]
     }
   ]
