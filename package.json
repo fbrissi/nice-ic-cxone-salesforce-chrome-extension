@@ -1,6 +1,6 @@
 {
   "name": "salesforce-plugin",
-  "version": "0.0.0.3",
+  "version": "0.0.0.4",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
@@ -16,6 +16,8 @@
     "react-icons": "^3.11.0",
     "react-modal": "^3.11.2",
     "react-redux": "^7.2.1",
+    "react-router-dom": "^5.2.0",
+    "react-switch": "^5.0.1",
     "react-transition-group": "^4.4.1",
     "redux": "^4.0.5",
     "reduxsauce": "^1.2.0"

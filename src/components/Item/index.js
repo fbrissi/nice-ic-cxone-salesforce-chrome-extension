@@ -1,10 +1,10 @@
 import React from 'react';
 import { AiOutlinePlusCircle } from 'react-icons/ai';
-import { getStorage, KEY, parseMessage } from '../../services/message';
+import { getMessages, KEY, parseMessage } from '../../services/messages';
 
 const Item = () => {
   const addMessage = async (request) => {
-    const oldMessages = await getStorage();
+    const oldMessages = await getMessages();
     const messages = parseMessage(oldMessages, request.data);
     localStorage.setItem(KEY, JSON.stringify(messages));
   };
@@ -21,7 +21,8 @@ const Item = () => {
           id: '5004V00000aefcDQAQ',
           time: '08:08',
           description: 'New Salesforce case# 07752618 **System information only** 5004V00000aefcDQAQ',
-          phone: '0115514991434121',
+          email: 'teste@gmail.com',
+          phone: '0115514999999999',
           number: '07752618',
         },
       })}

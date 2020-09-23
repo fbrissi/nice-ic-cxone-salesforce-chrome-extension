@@ -61,6 +61,7 @@ body.dark .time-entries-list-total-time {
   background: white;
   font-size: 14px;
   color: #333333;
+  border-bottom: 1px solid #C6D2D9;
   position: relative;
   z-index: 1;
   transition: all 0.2s ease;

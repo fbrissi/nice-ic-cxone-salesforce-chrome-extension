@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { AiOutlineReload } from 'react-icons/ai';
 import { Creators as messagesActions } from '../../store/ducks/messages';
-import { getStorage } from '../../services/message';
+import { getMessages } from '../../services/messages';
 
 const Sync = (props) => {
   const {
@@ -12,7 +12,7 @@ const Sync = (props) => {
   } = props;
 
   const syncMessages = async () => {
-    setMessages(await getStorage());
+    setMessages(await getMessages());
   };
 
   return (

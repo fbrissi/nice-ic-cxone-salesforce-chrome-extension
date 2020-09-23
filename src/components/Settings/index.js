@@ -1,11 +1,26 @@
-import React, { useState } from 'react';
-import { map } from 'lodash';
+import React, {useEffect, useState} from 'react';
+import { get, map } from 'lodash';
 import { RiListSettingsFill } from 'react-icons/ri';
-import links from './links.json';
+import { FiSettings } from 'react-icons/fi';
+import { useHistory } from 'react-router-dom';
 import './style.css';
+import { connect } from 'react-redux';
+import LocalPropTypes from '../prop-types/LocalPropTypes';
 
-const Settings = () => {
+const Settings = (props) => {
+  const {
+    settings,
+  } = props;
+
   const [active, setActive] = useState(false);
+
+  const history = useHistory();
+
+  const [links, setLinks] = useState(get(settings, 'links'));
+
+  useEffect(() => {
+    setLinks(get(settings, 'links'));
+  }, [settings]);
 
   const openLink = (link) => {
     if (process.env.NODE_ENV === 'production') {
@@ -31,6 +46,15 @@ const Settings = () => {
             />
             <div className="rectangle" />
             <div className="dropdown-menu">
+              <button
+                type="button"
+                className="dropdown-item active"
+                onClick={() => history.push('/settings')}
+              >
+                <FiSettings size={20} />
+                <span className="margin-button">Configurações</span>
+              </button>
+              <div className="dropdown-divider" />
               <div className="dropdown-header">LINKS ÚTEIS:</div>
               {
                 map(links, (value, key) => (
@@ -52,4 +76,16 @@ const Settings = () => {
   );
 };
 
-export default Settings;
+Settings.propTypes = {
+  settings: LocalPropTypes.settings,
+};
+
+Settings.defaultProps = {
+  settings: {},
+};
+
+const mapStateToProps = (state) => ({
+  settings: state.settings,
+});
+
+export default connect(mapStateToProps)(Settings);

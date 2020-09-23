@@ -11,7 +11,7 @@ import { HiMail } from 'react-icons/hi';
 import { AiOutlineNumber, AiFillPhone } from 'react-icons/ai';
 import { Creators as messagesActions } from '../../store/ducks/messages';
 import LocalPropTypes from '../prop-types/LocalPropTypes';
-import { getStorage } from '../../services/message';
+import { getMessages } from '../../services/messages';
 
 const Messages = (props) => {
   const {
@@ -49,7 +49,7 @@ const Messages = (props) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      setMessages(await getStorage());
+      setMessages(await getMessages());
     };
 
     fetchData();
@@ -142,11 +142,12 @@ const Messages = (props) => {
 };
 
 Messages.propTypes = {
-  messages: LocalPropTypes.messages.isRequired,
+  messages: LocalPropTypes.messages,
   setMessages: PropTypes.func,
 };
 
 Messages.defaultProps = {
+  messages: [],
   setMessages: () => {
   },
 };

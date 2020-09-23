@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { BsTrashFill } from 'react-icons/bs';
 import { Creators as messagesActions } from '../../store/ducks/messages';
-import { cleanStorage } from '../../services/message';
+import { cleanMessages } from '../../services/messages';
 
 const Trash = (props) => {
   const {
@@ -13,7 +13,7 @@ const Trash = (props) => {
 
   const clean = () => {
     setMessages([]);
-    cleanStorage();
+    cleanMessages();
   };
 
   return (
