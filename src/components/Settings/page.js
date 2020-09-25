@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import Switch from 'react-switch';
 import { bindActionCreators } from 'redux';
 import {
-  get, map, each, filter,
+  get, map, filter,
 } from 'lodash';
 import { RiSaveFill, RiAddCircleFill } from 'react-icons/ri';
 import { MdRemoveCircle } from 'react-icons/md';

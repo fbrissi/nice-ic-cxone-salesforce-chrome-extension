@@ -13,11 +13,3 @@ export const setStorage = async (key, value, sync = false) => {
 
   return localStorage.setItem(key, JSON.stringify(value));
 };
-
-export const cleanStorage = async (key, sync = false) => {
-  if (process.env.NODE_ENV === 'production') {
-    return browser.storage[sync ? 'sync' : 'local'].set({ [key]: undefined });
-  }
-
-  return localStorage.setItem(key, '');
-};

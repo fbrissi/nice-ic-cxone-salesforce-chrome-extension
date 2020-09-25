@@ -1,10 +1,10 @@
-import { cleanStorage, getStorage } from './storage';
+import { getStorage, setStorage } from './storage';
 
 export const KEY = 'nice_ic_cxone_salesforce_messages';
 
 export const getMessages = async () => getStorage(KEY);
 
-export const cleanMessages = async () => cleanStorage(KEY);
+export const cleanMessages = async () => setStorage(KEY, []);
 
 export const parseMessage = (messages = [], data = {}) => {
   const now = new Date().toISOString()
