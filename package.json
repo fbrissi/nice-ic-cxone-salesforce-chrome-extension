@@ -1,5 +1,5 @@
 {
-  "name": "salesforce-plugin",
+  "name": "niceic-cxone-salesforce-extension",
   "version": "0.0.1.0",
   "private": true,
   "dependencies": {

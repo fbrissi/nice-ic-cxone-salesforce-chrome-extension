@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
-  "name": "SalesForce - FamilySearch - BR",
-  "description": "Ferramenta auxiliar para Salesforce no suporte do FamilySearch",
+  "name": "NiceIC CXone Salesforce Extension",
+  "description": "Extensão com recursos auxiliares para NiceIC CXone Salesforce",
   "version": "0.0.1.0",
   "author": "Filipe Bojikian Rissi",
   "permissions": [
@@ -11,7 +11,7 @@
   ],
   "browser_action": {
     "default_popup": "index.html",
-    "default_title": "SalesForce - FamilySearch - BR",
+    "default_title": "NiceIC CXone Salesforce Extension",
     "default_icon": {
       "16": "icon.png",
       "24": "icon.png",
