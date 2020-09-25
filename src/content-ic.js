@@ -25,6 +25,16 @@ const handleMutationObserver = (mutations) => {
             .substr(otherInfo.indexOf('case#'), otherInfo.indexOf('**System'))
             .replaceAll(/\D/g, '');
 
+          let email = '';
+
+          element.querySelectorAll('.chatNotify > .messageDiv')
+            .forEach((el) => {
+              const matcher = el.textContent.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/g);
+              if (matcher) {
+                email = matcher.join(', ');
+              }
+            });
+
           if (description) {
             const message = {
               type: 'NOTIFIER',
@@ -32,6 +42,7 @@ const handleMutationObserver = (mutations) => {
                 id: sfId,
                 time,
                 description,
+                email,
                 phone,
                 number,
               },
