@@ -1,5 +1,5 @@
 .content-setting {
-  width: 360px;
+  width: 400px;
   min-height: 430px;
   padding-top: 120px;
 }
@@ -107,6 +107,7 @@ body.dark .dropdown-header {
 .settings-page {
   display: flex;
   padding-left: 20px;
+  padding-right: 20px;
   flex-direction: column;
 }
 
@@ -122,4 +123,45 @@ body.dark .dropdown-header {
 
 .settings-page-item-margin {
   margin-left: 10px;
+}
+
+.links-template {
+  display: flex;
+  flex-direction: row;
+}
+
+section.table {
+  margin-top: 5px;
+  padding: 5px;
+}
+
+header.table, .row {
+  display: flex;
+  color: #03A9F4;
+}
+
+.col_1 {
+  flex: 1;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.col_2 {
+  flex: 3;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.col-text {
+  color: #000;
+}
+
+body.dark .col-text {
+  color: #E4EAEE;
+}
+
+.links-template select {
+  flex: 1;
 }

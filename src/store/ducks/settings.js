@@ -1,4 +1,5 @@
 import { createActions, createReducer } from 'reduxsauce';
+import { isEmpty } from 'lodash';
 import { setSettings } from '../../services/settings';
 
 export const { Types, Creators } = createActions({
@@ -9,7 +10,9 @@ const INITIAL_STATE = {};
 
 export const set = (state = INITIAL_STATE, action) => {
   const settings = action.settings || state;
-  setSettings(settings);
+  if (!isEmpty(settings)) {
+    setSettings(settings);
+  }
   return settings;
 };
 

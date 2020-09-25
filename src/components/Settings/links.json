@@ -1,8 +1,31 @@
-{
-  "Outlook": "https://outlook.office365.com/mail/inbox",
-  "Nice IC": "https://login.incontact.com/incontact/Login.aspx?ReturnUrl=%2f",
-  "Salesforce": "https://familysearch.my.salesforce.com/",
-  "FamilySearch": "https://www.familysearch.org/",
-  "Lisa": "https://identitysupport.churchofjesuschrist.org/",
-  "Family History Center Profile Database": "https://fhcprofile.familysearchsupport.org/"
-}
+[
+  {
+    "title": "FamilySearch",
+    "itens": [
+      {
+        "title": "Outlook",
+        "url": "https://outlook.office365.com/mail/inbox"
+      },
+      {
+        "title": "Nice IC",
+        "url": "https://login.incontact.com/incontact/Login.aspx?ReturnUrl=%2f"
+      },
+      {
+        "title": "Salesforce",
+        "url": "https://familysearch.my.salesforce.com/"
+      },
+      {
+        "title": "FamilySearch",
+        "url": "https://www.familysearch.org/"
+      },
+      {
+        "title": "Lisa",
+        "url": "https://identitysupport.churchofjesuschrist.org/"
+      },
+      {
+        "title": "Family History Center Profile Database",
+        "url": "https://fhcprofile.familysearchsupport.org/"
+      }
+    ]
+  }
+]

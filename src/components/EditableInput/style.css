@@ -1,0 +1,12 @@
+input.editable {
+  border: 0;
+  outline: none;
+  width: 100%;
+  background: #b4e1f5;
+}
+
+span.editable {
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+}

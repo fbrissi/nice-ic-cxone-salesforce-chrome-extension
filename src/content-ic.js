@@ -11,7 +11,7 @@ const handleMutationObserver = (mutations) => {
           id = element.id;
           const timeElement = element.querySelector('.agentMsgDate');
           const otherInfoElement = element.querySelector('.agentMsgCon');
-          const phoneElement = document.getElementById('phoneIDorNumberPnlId');
+          const phoneElement = document.getElementById('contactIDorNumberPnlId');
 
           const timeText = timeElement.textContent || timeElement.innerText;
           const phoneText = phoneElement ? phoneElement.textContent || phoneElement.innerText : '';

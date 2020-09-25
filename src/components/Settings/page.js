@@ -3,12 +3,18 @@ import './style.css';
 import { useHistory } from 'react-router-dom';
 import Switch from 'react-switch';
 import { bindActionCreators } from 'redux';
-import { get } from 'lodash';
+import {
+  get, map, each, filter,
+} from 'lodash';
+import { RiSaveFill, RiAddCircleFill } from 'react-icons/ri';
+import { MdRemoveCircle } from 'react-icons/md';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Header from '../Header';
 import { Creators as settingsActions } from '../../store/ducks/settings';
 import LocalPropTypes from '../prop-types/LocalPropTypes';
+import linksTemplate from './links.json';
+import EditableInput from '../EditableInput';
 
 const Settings = (props) => {
   const {
@@ -18,8 +24,31 @@ const Settings = (props) => {
 
   const history = useHistory();
 
-  const [links, setLinks] = useState(get(settings, 'links', false));
+  const [template, setTemplate] = useState();
+  const [links, setLinks] = useState(get(settings, 'links', []));
   const [darkMode, setDarkMode] = useState(get(settings, 'darkMode'));
+
+  const applyTemplate = () => {
+    setLinks(get(linksTemplate, template).itens);
+    setTemplate('');
+  };
+
+  const addLink = () => {
+    setLinks([
+      ...links,
+      { title: 'Title', url: 'URL' },
+    ]);
+  };
+
+  const onChangeValue = (index, key, value) => {
+    const newLinks = [...links];
+    newLinks[index][key] = value;
+    setLinks(newLinks);
+  };
+
+  const removeLink = (index) => {
+    setLinks(filter(links, (value, key) => index !== key));
+  };
 
   useEffect(() => {
     setSettings({
@@ -35,7 +64,7 @@ const Settings = (props) => {
         <button
           type="button"
           className="header-back"
-          onClick={() => history.push('/')}
+          onClick={() => history.push('/index.html')}
         >
           Voltar
         </button>
@@ -63,12 +92,77 @@ const Settings = (props) => {
         >
           <span>Links</span>
         </label>
-        <textarea
-          id="links"
-          className="settings-page-item"
-          value={JSON.stringify(links)}
-          onChange={(event) => setLinks(JSON.parse(event.target.value))}
-        />
+        <div className="links-template">
+          <select
+            value={template}
+            onChange={(event) => setTemplate(event.target.value)}
+          >
+            <option value="">
+              Selecione um item...
+            </option>
+            {
+              map(linksTemplate, (value, index) => (
+                <option
+                  key={index}
+                  value={index}
+                >
+                  {value.title}
+                </option>
+              ))
+            }
+          </select>
+          <RiAddCircleFill
+            size={20}
+            className="icon-button margin-icon"
+            onClick={() => addLink()}
+            aria-hidden="true"
+          />
+          <RiSaveFill
+            size={20}
+            className="icon-button margin-icon"
+            onClick={() => applyTemplate()}
+            aria-hidden="true"
+          />
+        </div>
+        <section className="time-entry table">
+          <header className="table">
+            <div className="col_1">Nome</div>
+            <div className="col_2">URL</div>
+          </header>
+          {
+            map(links, (value, index) => (
+              <div
+                key={index}
+                className="row"
+              >
+                <div
+                  title={value.title}
+                  className="col_1 col-text"
+                >
+                  <EditableInput
+                    onChange={(newValue) => onChangeValue(index, 'title', newValue)}
+                    text={value.title}
+                  />
+                </div>
+                <div
+                  title={value.url}
+                  className="col_2 col-text"
+                >
+                  <EditableInput
+                    onChange={(newValue) => onChangeValue(index, 'url', newValue)}
+                    text={value.url}
+                  />
+                </div>
+                <MdRemoveCircle
+                  size={20}
+                  className="icon-button margin-icon"
+                  onClick={() => removeLink(index)}
+                  aria-hidden="true"
+                />
+              </div>
+            ))
+          }
+        </section>
       </div>
     </div>
   );

@@ -21,7 +21,7 @@ const Root = () => {
         <Switch location={location}>
           <Route
             exact
-            path="/"
+            path="/index.html"
             component={App}
           />
           <Route

@@ -67,5 +67,11 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
 
+Security and Privacy
+-----
+The NiceIC CXone Salesforce browser extension/plugin communicates directly between the user's web browser page. No data is sent to anything server.
+The NiceIC CXone Salesforce don't communicates with any API. Any data is get from the Salesforce current tab when you are working, but it is stored only in the extension, it is not synchronized, you can delete it at any time.
 
-https://github.com/sorenkrabbe/Chrome-Salesforce-inspector#user-content-security-and-privacy
+The only data synced for this extension is your profile settings. 
+
+To validate the accuracy of this description, inspect the source code, monitor the network traffic in your browser or take my word.

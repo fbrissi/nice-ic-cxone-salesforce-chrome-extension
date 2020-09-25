@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { get, map } from 'lodash';
 import { RiListSettingsFill } from 'react-icons/ri';
 import { FiSettings } from 'react-icons/fi';
@@ -57,14 +57,14 @@ const Settings = (props) => {
               <div className="dropdown-divider" />
               <div className="dropdown-header">LINKS ÚTEIS:</div>
               {
-                map(links, (value, key) => (
+                map(links, (value, index) => (
                   <button
-                    key={key}
+                    key={index}
                     type="button"
                     className="dropdown-item active"
-                    onClick={() => openLink(value)}
+                    onClick={() => openLink(value.url)}
                   >
-                    <span>{key}</span>
+                    <span>{value.title}</span>
                   </button>
                 ))
               }
