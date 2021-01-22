@@ -4,6 +4,7 @@ import { RiListSettingsFill } from 'react-icons/ri';
 import { FiSettings } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
 import './style.css';
+import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import LocalPropTypes from '../prop-types/LocalPropTypes';
 
@@ -52,7 +53,9 @@ const Settings = (props) => {
                 onClick={() => history.push('/settings')}
               >
                 <FiSettings size={20} />
-                <span className="margin-button">Configurações</span>
+                <span className="margin-button">
+                  <FormattedMessage id="menu.settings" />
+                </span>
               </button>
               <div className="dropdown-divider" />
               <div className="dropdown-header">LINKS ÚTEIS:</div>

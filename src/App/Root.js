@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Switch, useLocation } from 'react-router-dom';
 import { SwitchTransition, CSSTransition } from 'react-transition-group';
-import App from '../components/App';
+import Dashboard from '../components/Dashboard';
 import Settings from '../components/Settings/page';
 import './style.css';
 
@@ -22,7 +22,7 @@ const Root = () => {
           <Route
             exact
             path="/index.html"
-            component={App}
+            component={Dashboard}
           />
           <Route
             exact

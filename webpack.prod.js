@@ -6,6 +6,12 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const common = require('./webpack.common.js');
 
 module.exports = merge(common, {
+  entry: {
+    app: path.join(__dirname, 'src', 'index.js'),
+    background: path.join(__dirname, 'src', 'background.js'),
+    'content-ic': path.join(__dirname, 'src', 'content-ic.js'),
+    'content-sf': path.join(__dirname, 'src', 'content-sf.js'),
+  },
   mode: 'production',
   output: {
     filename: '[name].js',

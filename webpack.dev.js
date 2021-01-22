@@ -4,6 +4,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const common = require('./webpack.common.js');
 
 module.exports = merge(common, {
+  entry: {
+    app: path.join(__dirname, 'src', 'index.js'),
+  },
   mode: 'development',
   devtool: 'inline-source-map',
   devServer: {

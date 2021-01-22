@@ -8,12 +8,6 @@ const { HtmlWebpackSkipAssetsPlugin } = require('html-webpack-skip-assets-plugin
 const packageJson = require('./package.json');
 
 module.exports = {
-  entry: {
-    app: path.join(__dirname, 'src', 'index.js'),
-    background: path.join(__dirname, 'src', 'background.js'),
-    'content-ic': path.join(__dirname, 'src', 'content-ic.js'),
-    'content-sf': path.join(__dirname, 'src', 'content-sf.js'),
-  },
   module: {
     rules: [
       {
@@ -46,6 +40,7 @@ module.exports = {
       filename: 'index.html',
       template: path.join(__dirname, 'public', 'index.html'),
       publicUrl: `${process.env.PUBLIC_URL ?? ''}`,
+      environment: `${process.env.NODE_ENV}`,
       version: `${packageJson.version}`,
     }),
     new FixStyleOnlyEntriesPlugin(),

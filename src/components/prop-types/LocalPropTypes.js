@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 
 const LocalPropTypes = {
   settings: PropTypes.shape({
+    language: PropTypes.string,
     darkMode: PropTypes.bool,
     links: PropTypes.oneOfType([
       PropTypes.string.isRequired,
