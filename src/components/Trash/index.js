@@ -1,28 +1,73 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { BsTrashFill } from 'react-icons/bs';
-import { Creators as messagesActions } from '../../store/ducks/messages';
+import Modal from 'react-modal';
+import './style.css';
+import { FormattedMessage } from 'react-intl';
+import { FaCheck, FaBan } from 'react-icons/fa';
 import { cleanMessages } from '../../services/messages';
+import { Creators as messagesActions } from '../../store/ducks/messages';
 
 const Trash = (props) => {
   const {
     setMessages,
   } = props;
 
-  const clean = () => {
+  const [confirm, setConfirm] = useState(false);
+
+  const clean = async () => {
     setMessages([]);
-    cleanMessages();
+    await cleanMessages();
+    setConfirm(false);
   };
 
   return (
-    <BsTrashFill
-      size={20}
-      className="icon-button margin-button"
-      aria-label="Clean"
-      onClick={() => clean()}
-    />
+    <div>
+      <Modal
+        isOpen={confirm}
+        className="modal"
+        overlayClassName="overlay"
+      >
+        <h2>
+          <FormattedMessage id="menu.clear.title" />
+        </h2>
+
+        <p>
+          <FormattedMessage id="menu.clear.message" />
+        </p>
+
+        <div className="button-actions">
+          <button
+            type="button"
+            onClick={() => clean()}
+          >
+            <FaCheck size={20} />
+            <span className="margin-button">
+              <FormattedMessage id="generic.button.confirm" />
+            </span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setConfirm(false)}
+          >
+            <FaBan size={20} />
+            <span className="margin-button">
+              <FormattedMessage id="generic.button.cancel" />
+            </span>
+          </button>
+        </div>
+      </Modal>
+
+      <BsTrashFill
+        size={20}
+        className="icon-button margin-button"
+        aria-label="Clean"
+        onClick={() => setConfirm(true)}
+      />
+    </div>
   );
 };
 

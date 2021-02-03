@@ -1,0 +1,16 @@
+{
+  "generic.selectItem": "Select an item...",
+  "generic.name": "Name",
+  "generic.url": "URL",
+  "generic.button.confirm": "Confirm",
+  "generic.button.cancel": "Cancel",
+  "menu.clear.title": "Confirm Clear!",
+  "menu.clear.message": "Do you really want to clear your history?",
+  "menu.settings": "SETTINGS",
+  "menu.favorites": "FAVORITES:",
+  "menu.back": "Back:",
+  "setting.prefixCall": "Prefix to call:",
+  "setting.dakr": "Dark Mode",
+  "setting.templates": "Templates:",
+  "setting.language": "Language:"
+}

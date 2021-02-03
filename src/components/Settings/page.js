@@ -7,13 +7,16 @@ import {
   get, map, filter,
 } from 'lodash';
 import { RiSaveFill, RiAddCircleFill } from 'react-icons/ri';
+import { FormattedMessage } from 'react-intl';
 import { MdRemoveCircle } from 'react-icons/md';
 import { connect } from 'react-redux';
+import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import Header from '../Header';
 import { Creators as settingsActions } from '../../store/ducks/settings';
 import LocalPropTypes from '../prop-types/LocalPropTypes';
 import linksTemplate from './links.json';
+import languages from './language.json';
 import EditableInput from '../EditableInput';
 
 const Settings = (props) => {
@@ -26,7 +29,9 @@ const Settings = (props) => {
 
   const [template, setTemplate] = useState();
   const [links, setLinks] = useState(get(settings, 'links', []));
-  const [darkMode, setDarkMode] = useState(get(settings, 'darkMode'));
+  const [prefixCall, setPrefixCall] = useState(get(settings, 'call.prefix'));
+  const [language, setLanguage] = useState(get(settings, 'language'));
+  const [darkMode, setDarkMode] = useState(get(settings, 'darkMode', false));
 
   const applyTemplate = () => {
     setLinks(get(linksTemplate, template).itens);
@@ -54,12 +59,30 @@ const Settings = (props) => {
     setSettings({
       ...settings,
       darkMode,
+      language,
       links,
+      call: {
+        prefix: prefixCall,
+      },
     });
-  }, [darkMode, links]);
+  }, [darkMode, links, language, prefixCall]);
 
   return (
-    <div className="content-setting">
+    <motion.div
+      className="content-setting"
+      exit={{
+        x: 100,
+        opacity: 0,
+      }}
+      initial={{
+        x: -100,
+        opacity: 0,
+      }}
+      animate={{
+        x: 0,
+        opacity: 1,
+      }}
+    >
       <Header>
         <button
           type="button"
@@ -84,22 +107,65 @@ const Settings = (props) => {
             checked={darkMode}
             onChange={(checked) => setDarkMode(checked)}
           />
-          <span className="settings-page-item-margin">Dark Mode</span>
+          <span className="settings-page-item-margin">
+            <FormattedMessage id="setting.dakr" />
+          </span>
+        </label>
+        <label
+          className="settings-page-item"
+        >
+          <span>
+            <FormattedMessage id="setting.prefixCall" />
+          </span>
+          <input
+            value={prefixCall}
+            onChange={(e) => setPrefixCall(e.target.value)}
+          />
         </label>
         <label
           className="settings-page-item settings-page-item-title"
           htmlFor="links"
         >
-          <span>Links</span>
+          <span>
+            <FormattedMessage id="setting.language" />
+          </span>
+        </label>
+        <div className="links-template">
+          <select
+            value={language}
+            onChange={(event) => setLanguage(event.target.value)}
+          >
+            <FormattedMessage id="generic.selectItem">
+              {(message) => <option value="">{message}</option>}
+            </FormattedMessage>
+            {
+              map(languages, (value, index) => (
+                <option
+                  key={index}
+                  value={value.slug}
+                >
+                  {value.name}
+                </option>
+              ))
+            }
+          </select>
+        </div>
+        <label
+          className="settings-page-item settings-page-item-title"
+          htmlFor="links"
+        >
+          <span>
+            <FormattedMessage id="setting.templates" />
+          </span>
         </label>
         <div className="links-template">
           <select
             value={template}
             onChange={(event) => setTemplate(event.target.value)}
           >
-            <option value="">
-              Selecione um item...
-            </option>
+            <FormattedMessage id="generic.selectItem">
+              {(message) => <option value="">{message}</option>}
+            </FormattedMessage>
             {
               map(linksTemplate, (value, index) => (
                 <option
@@ -126,8 +192,12 @@ const Settings = (props) => {
         </div>
         <section className="time-entry table">
           <header className="table">
-            <div className="col_1">Nome</div>
-            <div className="col_2">URL</div>
+            <div className="col_1">
+              <FormattedMessage id="generic.name" />
+            </div>
+            <div className="col_2">
+              <FormattedMessage id="generic.url" />
+            </div>
           </header>
           {
             map(links, (value, index) => (
@@ -164,7 +234,7 @@ const Settings = (props) => {
           }
         </section>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

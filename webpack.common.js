@@ -40,7 +40,6 @@ module.exports = {
       filename: 'index.html',
       template: path.join(__dirname, 'public', 'index.html'),
       publicUrl: `${process.env.PUBLIC_URL ?? ''}`,
-      environment: `${process.env.NODE_ENV}`,
       version: `${packageJson.version}`,
     }),
     new FixStyleOnlyEntriesPlugin(),

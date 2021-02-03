@@ -28,15 +28,14 @@ const App = (props) => {
     <BrowserRouter>
       <IntlProvider
         defaultLocale="en-US"
-        locale={get(settings, 'language')}
+        locale={get(settings, 'language', 'en-US')}
         messages={get(messages, get(settings, 'language', 'en-US'))}
       >
         <Route>
           <Switch>
-            <Route
-              path="*"
-              component={Root}
-            />
+            <Route path="*">
+              <Root />
+            </Route>
           </Switch>
         </Route>
       </IntlProvider>

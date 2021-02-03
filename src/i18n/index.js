@@ -1,7 +1,8 @@
-import pt_br from './messages/pt-br';
-import en_us from './messages/en-us';
+import { reduce } from 'lodash';
+import languages from '../components/Settings/language.json';
 
-export default {
-  'pt-BR': pt_br,
-  'en-US': en_us,
-};
+export default reduce(languages, (hash, value) => {
+  const current = hash;
+  current[value.slug] = require(`./messages/${value.module}`);
+  return current;
+}, {});

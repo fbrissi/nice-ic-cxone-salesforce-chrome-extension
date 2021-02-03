@@ -1,0 +1,16 @@
+{
+  "generic.selectItem": "Selecione um item...",
+  "generic.name": "Nome",
+  "generic.url": "URL",
+  "generic.button.confirm": "Confirmar",
+  "generic.button.cancel": "Cancelar",
+  "menu.clear.title": "Confirmação Limpar!",
+  "menu.clear.message": "Deseja realmente limpar seu histórico?",
+  "menu.settings": "CONFIGURAÇÕES",
+  "menu.favorites": "FAVORITOS:",
+  "menu.back": "Voltar:",
+  "setting.prefixCall": "Prefixo para ligar:",
+  "setting.dakr": "Modo Escuro",
+  "setting.templates": "Modelos:",
+  "setting.language": "Idioma"
+}

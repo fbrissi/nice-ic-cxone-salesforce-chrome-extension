@@ -16,10 +16,10 @@
 </head>
 <body>
   <noscript>
-    Você precisa habilitar o JavaScript para executar este aplicativo.
+    You need to enable JavaScript to run this application.
   </noscript>
   <div id="root"></div>
-  <% if (htmlWebpackPlugin.options.environment === 'production'){ %>
+  <% if (process.env.NODE_ENV === 'production') { %>
     <script type="application/javascript" src="browser-polyfill.js"></script>
   <% } %>
 </body>

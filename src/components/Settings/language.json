@@ -1,0 +1,12 @@
+[
+  {
+    "slug": "pt-BR",
+    "name": "Português",
+    "module": "pt-br.json"
+  },
+  {
+    "slug": "en-US",
+    "name": "English",
+    "module": "en-us.json"
+  }
+]

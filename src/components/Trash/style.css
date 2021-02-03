@@ -1,0 +1,43 @@
+.button-actions {
+  flex: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: flex-start;
+}
+
+.button-actions button {
+  width: auto;
+  border: revert;
+  margin-right: 5px;
+}
+
+body.dark .button-actions button {
+  background-color: #ffffff;
+}
+
+.modal {
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  right: 20%;
+  bottom: 60%;
+  outline: none;
+  padding: 10px;
+  z-index: 1113;
+  background-color: #ffffff;
+}
+
+body.dark .modal {
+  background-color: #37474F;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1112;
+  background-color: #00000096;
+}

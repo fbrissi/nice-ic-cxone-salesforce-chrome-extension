@@ -17,10 +17,10 @@ const Settings = (props) => {
 
   const history = useHistory();
 
-  const [links, setLinks] = useState(get(settings, 'links'));
+  const [links, setLinks] = useState(get(settings, 'links', []));
 
   useEffect(() => {
-    setLinks(get(settings, 'links'));
+    setLinks(get(settings, 'links', []));
   }, [settings]);
 
   const openLink = (link) => {
@@ -58,7 +58,9 @@ const Settings = (props) => {
                 </span>
               </button>
               <div className="dropdown-divider" />
-              <div className="dropdown-header">LINKS ÚTEIS:</div>
+              <div className="dropdown-header">
+                <FormattedMessage id="menu.favorites" />
+              </div>
               {
                 map(links, (value, index) => (
                   <button
