@@ -16,19 +16,19 @@ body.dark .button-actions button {
   background-color: #ffffff;
 }
 
-.modal {
+.react-modal {
   position: absolute;
-  top: 20%;
-  left: 20%;
-  right: 20%;
-  bottom: 60%;
+  top: 25%;
+  left: 15%;
+  right: 15%;
+  bottom: 50%;
   outline: none;
   padding: 10px;
   z-index: 1113;
   background-color: #ffffff;
 }
 
-body.dark .modal {
+body.dark .react-modal {
   background-color: #37474F;
 }
 

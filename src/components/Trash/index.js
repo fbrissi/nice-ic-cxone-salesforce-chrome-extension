@@ -27,7 +27,7 @@ const Trash = (props) => {
     <div>
       <Modal
         isOpen={confirm}
-        className="modal"
+        className="react-modal"
         overlayClassName="overlay"
       >
         <h2>

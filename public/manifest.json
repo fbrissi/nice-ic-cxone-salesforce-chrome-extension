@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "NiceIC CXone Salesforce Extension",
   "description": "Extensão com recursos auxiliares para NiceIC CXone Salesforce",
-  "version": "0.0.1.0",
+  "version": "0.0.2.0",
   "author": "Filipe Bojikian Rissi",
   "permissions": [
     "storage",
@@ -37,6 +37,7 @@
   "content_scripts": [
     {
       "all_frames": true,
+      "run_at": "document_end",
       "matches": [
         "https://*.visual.force.com/apex/inContactAgentConsole*"
       ],
@@ -47,8 +48,9 @@
     },
     {
       "all_frames": true,
+      "run_at": "document_end",
       "matches": [
-        "https://*.my.salesforce.com/500*"
+        "https://*.my.salesforce.com/*"
       ],
       "js": [
         "browser-polyfill.js",
