@@ -13,12 +13,22 @@ browser.runtime.onMessage.addListener(async (request) => {
 Array.from(document.getElementsByClassName('tel')).forEach((element) => {
   Array.from(element.nextSibling.getElementsByTagName('a')).forEach(async (call) => {
     const onclick = call.getAttribute('onclick');
-    const { groups: { number } } = /encodeURIComponent\('(?<number>\d+)'\)/gi.exec(onclick);
-    const setting = await getSettings();
+    const regex = /encodeURIComponent\('(?<phone>[\d\W]+)'\)/gi.exec(onclick);
+    if (regex) {
+      const { groups: { phone } } = regex;
+      const number = phone.match(/\d+/g).join('');
+      const setting = await getSettings();
 
-    if (setting && setting.call && setting.call.prefix && !number.startsWith(setting.call.prefix)) {
-      call.setAttribute('onclick', onclick
-        .replace(`encodeURIComponent('${number}')`, `encodeURIComponent('${setting.call.prefix}${number}')`));
+      if (setting && setting.call && setting.call.prefix
+        && !number.startsWith(setting.call.prefix)) {
+        call.setAttribute('onclick', onclick
+          .replace(`encodeURIComponent('${phone}')`,
+            `encodeURIComponent('${setting.call.prefix}${number}')`));
+      } else {
+        call.setAttribute('onclick', onclick
+          .replace(`encodeURIComponent('${phone}')`,
+            `encodeURIComponent('${number}')`));
+      }
     }
   });
 });
