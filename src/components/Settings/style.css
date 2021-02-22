@@ -48,6 +48,8 @@ body.dark .rectangle {
 
 .dropdown-menu {
   position: absolute;
+  overflow: auto;
+  max-height: 400px;
   top: 70px;
   right: 3px;
   width: 250px;
